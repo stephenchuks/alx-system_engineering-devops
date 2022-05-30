@@ -1,0 +1,16 @@
+total 48
+drwxr-xr-x 2 root root 284 May 30 01:09 .
+drwxr-xr-x 6 root root 121 May 30 00:08 ..
+-rwxr--r-- 1 root root  33 May 30 00:16 0-hello_world
+-rwxr--r-- 1 root root  29 May 30 00:25 1-confused_smiley
+-rwxr--r-- 1 root root  28 May 30 00:31 2-hellofile
+-rwxr--r-- 1 root root  39 May 30 00:33 3-twofiles
+-rwxr--r-- 1 root root  29 May 30 00:37 4-lastlines
+-rwxr--r-- 1 root root  29 May 30 00:39 5-firstlines
+-rwxr--r-- 1 root root  36 May 30 00:49 6-third_line
+-rwxr--r-- 1 root root  96 May 30 01:00 7-file
+-rwxr--r-- 1 root root  36 May 30 01:08 8-cwd_state
+-rw-r--r-- 1 root root  17 May 30 01:02 \*\\'"Holberton School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 root root  19 May 30 00:42 iacta
+-rw-r--r-- 1 root root   0 May 30 01:09 ls_cwd_content
+-rwxr-xr-x 1 root root  28 May 30 00:10 README.md
