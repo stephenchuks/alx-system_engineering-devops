@@ -2,5 +2,5 @@
 
 # installing apache http server and starting it in the docker container
 
-echo "ServerName localhost" >> /etc/apache2.conf
+
 service apache2 start
