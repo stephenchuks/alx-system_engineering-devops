@@ -35,7 +35,7 @@ frontend  stephenchumphrey-frontend
         bind *:443 ssl crt /etc/letsencrypt/live/www.stephenchumphrey.tech/fullchain.pem
         mode https
         default_backend stephenchumphrey-backend
-backend monemax-backend
+backend stephenchumphrey-backend
         balance roundrobin
         server 59148-web-0154.236.53.50  check
         server 59148-web-02 34.207.63.67 check
