@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 # This bash script fixes the issues with nginx server problems from listening on port 80.
-
-if ! test -L /etc/nginx/sites-enabled/default; then
-  # If symlink does not exist, create it
-  ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-fi
-
-service  nginx restart
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
