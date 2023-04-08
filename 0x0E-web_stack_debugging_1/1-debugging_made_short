@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sed -i 's/listen\s*80\s*default_server;/listen 80 default_server;\nlisten [::]:80 default_server;/g' /etc/nginx/sites-available/default
-service nginx start
-
+# webstack debugging
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
+echo "" > /run/nginx.pid
