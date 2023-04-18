@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sed -i 's/^user .*$/user nginx;/' /etc/nginx/nginx.conf
+service nginx restart
+
