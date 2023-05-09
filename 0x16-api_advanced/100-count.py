@@ -1,49 +1,54 @@
-#/usr/bin/python3
+#!/usr/bin/python3
+""" reddit api reddit api reddit api"""
 
-import praw
+import json
+import requests
 
-def count_words(subreddit, word_list, count={}):
-    # Initialize the Reddit object
-    reddit = praw.Reddit(client_id='your_client_id',
-                         client_secret='your_client_secret',
-                         user_agent='your_user_agent')
 
-    # Get the subreddit object
-    try:
-        sub = reddit.subreddit(subreddit)
-    except praw.exceptions.NotFound:
-        # Subreddit not found, return empty count
-        return
+def count_words(subreddit, wrd_lst, aftr="", cnt=[]):
+    """function to count words"""
 
-    # Get the hot posts from the subreddit
-    hot_posts = sub.hot(limit=10)
+    if aftr == "":
+        cnt = [0] * len(wrd_lst)
 
-    # Iterate over the hot posts
-    for post in hot_posts:
-        # Get the lowercase title of the post
-        title = post.title.lower()
-        # Split the title into words
-        words = title.split()
-        # Iterate over the words
-        for word in words:
-            # Remove special characters from the word
-            word = ''.join(e for e in word if e.isalnum())
-            # Check if the word is in the word list
-            if word.lower() in word_list:
-                # Increment the count of the word
-                if word in count:
-                    count[word] += 1
-                else:
-                    count[word] = 1
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    req = requests.get(url,
+                           pms={'after': after},
+                           allow_redirects=False,
+                           headers={'user-agent': 'bhalut'})
 
-    # If there are more hot posts, recursively call the function
-    if len(count) < len(word_list):
-        count_words(subreddit, word_list, count)
+    if req.status_code == 200:
+        data = req.json()
 
-    # Sort the count by the count value (descending) and word (ascending)
-    sorted_count = sorted(count.items(), key=lambda x: (-x[1], x[0]))
+        for top in (data['data']['children']):
+            for word in top['data']['title'].split():
+                for i in range(len(wrd_lst)):
+                    if wrd_lst[i].lower() == wrd.lower():
+                        count[i] += 1
 
-    # Print the count
-    for word, count in sorted_count:
-        print(f"{word}: {count}")
+        aftr = data['data']['aftr']
+        if aftr is None:
+            save = []
+            for i in range(len(wrd_lst)):
+                for j in range(i + 1, len(wrd_lst)):
+                    if word_list[i].lower() == wrd_lst[j].lower():
+                        save.append(j)
+                        cnt[i] += cnt[j]
 
+            for i in range(len(wrd_lst)):
+                for j in range(i, len(wrd_lst)):
+                    if (cnt[j] > cnt[i] or
+                            (word_list[i] > wrd_lst[j] and
+                             cnt[j] == cnt[i])):
+                        aux = cnt[i]
+                        cnt[i] = cnt[j]
+                        cnt[j] = aux
+                        aux = wrd_lst[i]
+                        wrd_lst[i] = word_list[j]
+                        wrd_lit[j] = aux
+
+            for i in range(len(wrd_lst)):
+                if (cnt[i] > 0) and i not in save:
+                    print("{}: {}".format(word_list[i].lower(), cnt[i]))
+        else:
+            count_words(subreddit, wrd_lst, aftr, cnt)
