@@ -3,7 +3,7 @@
 from requests import get
 
 
-def num_of_subs(subreddit):
+def number_of_subsscribers(subreddit):
     """retrives the number of subscribers for a subredit"""
     header = {"User-Agent": 'Google Chrome Version 81.0.4044.129'}
     respon = get("https://www.reddit.com/r/{}/about.json".format(subreddit),
